@@ -21,9 +21,7 @@ const Footer = () => {
 		setFormData({ ...formData, [name]: value });
 	};
 
-	const handleSubmit = () => {};
-
-	const handleSubmit2 = async (event) => {
+	const handleSubmit = async (event) => {
 		setLoading(true);
 
 		const contact = {
@@ -41,6 +39,7 @@ const Footer = () => {
 			})
 			.catch((err) => console.log(err));
 
+		// Added this part so that the emails are sent to my email inbox
 		event.preventDefault();
 
 		const email = 'go.romerolae@gmail.com';
@@ -117,7 +116,7 @@ const Footer = () => {
 							onChange={handleChangeInput}
 						/>
 					</div>
-					<button type="submit" className="p-text" onClick={handleSubmit2}>
+					<button type="submit" className="p-text" onClick={handleSubmit}>
 						{!loading ? 'Send Message' : 'Sending...'}
 					</button>
 				</div>
