@@ -14,19 +14,16 @@ const Footer = () => {
 	const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 	const [loading, setLoading] = useState(false);
 
-	const {name, email, message } = formData;
+	const { name, email, message } = formData;
 
 	const handleChangeInput = (e) => {
 		const { name, value } = e.target;
 		setFormData({ ...formData, [name]: value });
 	};
 
-	const handleSubmit = () => {
-		
-	};
+	const handleSubmit = () => {};
 
-	 const handleSubmit2 = async (event) => {
-
+	const handleSubmit2 = async (event) => {
 		setLoading(true);
 
 		const contact = {
@@ -44,33 +41,29 @@ const Footer = () => {
 			})
 			.catch((err) => console.log(err));
 
+		event.preventDefault();
 
-			event.preventDefault();
+		const email = 'go.romerolae@gmail.com';
+		const URL_BASE = `https://formsubmit.co/ajax/${email}`;
 
-			const email = 'go.romerolae@gmail.com';
-			const URL_BASE = `https://formsubmit.co/ajax/${email}`;
+		try {
+			const response = await fetch(URL_BASE, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(formData),
+			});
 
-			try {
-				const response = await fetch(URL_BASE, {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify(formData),
-				});
-
-				if (response.ok) {
-					alert('Email sent successfully');
-				} else {
-					alert('Failed to send email');
-				}
-			} catch (error) {
-				alert('An error occurred:', error);
+			if (response.ok) {
+				alert('Email sent successfully');
+			} else {
+				alert('Failed to send email');
 			}
-		};
-
-
-
+		} catch (error) {
+			alert('An error occurred:', error);
+		}
+	};
 
 	return (
 		<>
@@ -93,6 +86,7 @@ const Footer = () => {
 			{!isFormSubmitted ? (
 				<div
 					className="app__footer-form app__flex"
+					action="c6a6ea576706c6517878c712bf6caae5"
 				>
 					<div className="app__flex">
 						<input
@@ -134,10 +128,7 @@ const Footer = () => {
 			)}
 		</>
 	);
-	
-	
 };
-
 
 export default AppWrap(
 	MotionWrap(Footer, 'app__footer'),
