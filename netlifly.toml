@@ -1,0 +1,3 @@
+[build]
+publish = "frontend-react/schemas"  # Carpeta de producción de la aplicación de React
+functions = "backend_sanity/functions"   # Carpeta de las funciones del backend
